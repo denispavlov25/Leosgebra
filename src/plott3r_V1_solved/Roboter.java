@@ -35,6 +35,10 @@ public class Roboter {
 	}
 
 	private void bereitePapierVor() throws InterruptedException {
+		while(!yAchse.isSensorAktiv()) {
+			yAchse.forward();
+		}
+		yAchse.stop();
 	}
 
 	private void entfernePapier() throws InterruptedException {
@@ -114,7 +118,7 @@ public class Roboter {
 		this.xAchse.resetTachoCount();
 		this.yAchse.resetTachoCount();
 		if (xAchse.getTachoCount() != 0 || yAchse.getTachoCount() != 0)
-			throw new RuntimeException("Konnte Tachocount nicht zurücksetzen");
+			throw new RuntimeException("Konnte Tachocount nicht zurï¿½cksetzen");
 	}
 
 	public void stop() {
