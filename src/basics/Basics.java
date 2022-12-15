@@ -18,7 +18,7 @@ import util.FileAccess;
 /**
  * https://sourceforge.net/p/lejos/wiki/
  * 
- * @author René Gerlach
+ * @author Renï¿½ Gerlach
  *
  */
 public class Basics {
@@ -87,7 +87,7 @@ public class Basics {
 	}
 
 	private static void fahreTurmAuf0Punkt() {
-		RegulatedMotor m = new EV3LargeRegulatedMotor(MotorPort.A);
+		RegulatedMotor m = new EV3LargeRegulatedMotor(MotorPort.C);
 		EV3TouchSensor touchSensor = new EV3TouchSensor(SensorPort.S1);
 		SensorMode sensorMode = touchSensor.getTouchMode();
 		float[] sample = new float[sensorMode.sampleSize()];
@@ -101,12 +101,12 @@ public class Basics {
 	}
 
 	public static void main(String[] args) throws InterruptedException {
-		dreheMotorUmXGrad(2000, MotorPort.A);
+		//dreheMotorUmXGrad(1000, MotorPort.C);
 		// dreheMotorFuerXSekunden(2f, MotorPort.B);
 		// dreheMotorUmXGradMitMaximalerGeschwindigkeit(1800, MotorPort.A);
 		// bestimmeHelligkeit(SensorPort.S3);
 		// pruefeTouchSensor();
-		// fahreTurmAuf0Punkt();
+		fahreTurmAuf0Punkt();
 		// synchroExample();
 		// demoTachoCount();
 		// playSound();
@@ -117,7 +117,7 @@ public class Basics {
 		FileAccess fileAccess = new FileAccess(".");
 		FileAccess.displayDirectoryContents(fileAccess.getFile());
 
-		// Datei kann über Control Center hochgeladen werden
+		// Datei kann ï¿½ber Control Center hochgeladen werden
 		int time = Sound.playSample(new File("./tetris-16bit.wav"), 100);
 		System.out.println("Time: " + time);
 
@@ -131,11 +131,11 @@ public class Basics {
 		float[] sample = new float[sensorMode.sampleSize()];
 		sensorMode.fetchSample(sample, 0);
 		while (sample[0] == 0) {
-			LCD.drawString("Nicht gedrückt: " + sample[0], 0, 0);
+			LCD.drawString("Nicht gedrï¿½ckt: " + sample[0], 0, 0);
 			sensorMode.fetchSample(sample, 0);
 			Delay.msDelay(200);
 		}
-		LCD.drawString("Gedrückt!", 0, 0);
+		LCD.drawString("Gedrï¿½ckt!", 0, 0);
 	}
 
 	private static void synchroExample() {
