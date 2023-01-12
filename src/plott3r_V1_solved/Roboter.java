@@ -8,21 +8,6 @@ import positions.Position2D;
 import positions.Position3D;
 
 public class Roboter {
-	public static void main(String args[]) {
-		try {
-			Roboter roboter = new Roboter();
-			Sound.beep();
-			roboter.moveToHomePosition();
-			roboter.bereitePapierVor();
-
-			Delay.msDelay(1000);
-			roboter.entfernePapier();
-			roboter.moveToHomePosition();
-			Sound.twoBeeps();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
 
 	private Position3D currentPosition;
 
@@ -64,8 +49,11 @@ public class Roboter {
 	public MultiPositionAchse getYAchse() {
 		return this.yAchse;
 	}
+	public DualPositionAchse getZAchse() {
+		return this.zAchse;
+	}
 
-	protected void moveToHomePosition() throws InterruptedException {
+	public void moveToHomePosition() throws InterruptedException {
 		zAchse.deaktiviere();
 		xAchse.setSpeed(50);
 		while (!xAchse.isSensorAktiv()) {
@@ -79,11 +67,11 @@ public class Roboter {
 		this.resetTachoCounts();
 	}
 
-	private void moveToPosition(Position2D position2D, int mmSec) throws InterruptedException {
+	public void moveToPosition(Position2D position2D, int mmSec) throws InterruptedException {
 		this.moveToPosition(new Position3D(position2D, this.zAchse.isAktiv()), mmSec);
 	}
 
-	private void moveToPosition(Position3D position, int mmSec) throws InterruptedException {
+	public void moveToPosition(Position3D position, int mmSec) throws InterruptedException {
 		if (position.isZ())
 			this.zAchse.aktiviere();
 		else
