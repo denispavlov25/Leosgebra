@@ -54,7 +54,7 @@ public class Motor {
 	}
 
 	public void rotate(int grad) {
-		this.regulatedMotor.rotate(grad, false);
+		this.regulatedMotor.rotate(grad, true);
 	}
 
 	public void rotateTo(int limitAngle) {

@@ -4,12 +4,16 @@ public class Main {
 
     public static void main(String[] args) throws InterruptedException {
         Roboter roboter = new Roboter();
-        Koordinatensystem koordinatensystem = new Koordinatensystem(5);
+        Koordinatensystem koordinatensystem = new Koordinatensystem(8);
+        roboter.bereitePapierVor();
+        roboter.moveToHomePosition();
         Printer printer = new Printer(roboter, koordinatensystem);
-        printer.zeichneFunktion(x -> 2 * x + 5);
-        //von rechts nach links den Ursprung wechseln
-        //dann resetTachoCounts
-        //dann currentPosition aktualisieren(also den Ursprung updaten)
+        printer.zeichneFunktion(new Function<Double, Double>() {
+
+			@Override
+			public Double apply(Double value) {
+				return -(value*value);
+			} });
 
     }
 }

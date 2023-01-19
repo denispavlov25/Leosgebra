@@ -19,10 +19,12 @@ public class Roboter {
 
 	}
 
-	private void bereitePapierVor() throws InterruptedException {
+	public void bereitePapierVor() throws InterruptedException {
+		zAchse.deaktiviere();
 		while(!yAchse.isSensorAktiv()) {
 			yAchse.forward();
 		}
+		
 		yAchse.stop();
 	}
 
@@ -63,6 +65,7 @@ public class Roboter {
 		xAchse.forward();
 		Delay.msDelay(200);
 		xAchse.stop();
+		xAchse.rotateMm(60);
 		this.currentPosition = new Position3D(0, 0, false);
 		this.resetTachoCounts();
 	}
@@ -77,8 +80,8 @@ public class Roboter {
 		else
 			this.zAchse.deaktiviere();
 
-		double deltaX = currentPosition.getX() - position.getX();
-		double deltaY = currentPosition.getY() - position.getY();
+		double deltaX = position.getX() - currentPosition.getX();
+		double deltaY = position.getY() - currentPosition.getY();
 		double hypo = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
 
 		double time = hypo / mmSec;
